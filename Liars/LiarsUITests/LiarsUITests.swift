@@ -1,13 +1,13 @@
 //
-//  Liars_GameUITests.swift
-//  Liars GameUITests
+//  LiarsUITests.swift
+//  LiarsUITests
 //
 //  Created by Linda Zhou on 1/11/26.
 //
 
 import XCTest
 
-final class Liars_GameUITests: XCTestCase {
+final class LiarsUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

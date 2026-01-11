@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Liars Game/Liars Game.xcodeproj">
+      location = "self:Liars.xcodeproj">
    </FileRef>
 </Workspace>

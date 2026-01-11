@@ -7,7 +7,7 @@ A fun party game where players try to identify the liar among them. Built with S
 
 ### 1st step: Game setup
 
-- Buttons and ranges for 
+- Buttons and sliders for 
     - # of players, 3-20, default 6
     - # of imposters, 1-4, default 2
     - checkbox for if imposter will have blank or an imposter word that is similar to true word
@@ -49,18 +49,65 @@ Liar_Game_App/
 
 ## Setup Instructions
 
+### Step 1: Create Xcode Project
+
 1. Open Xcode
-2. Create a new iOS App project:
-   - Product Name: `LiarGameApp`
-   - Interface: SwiftUI
-   - Language: Swift
-   - Minimum iOS version: iOS 16.0 or later
+2. Choose **File → New → Project** (or ⌘⇧N)
+3. Select **iOS → App** and click **Next**
+4. Configure the project:
+   - **Product Name**: `LiarGameApp` (or any name you prefer)
+   - **Team**: Select your development team (or "None" for personal use)
+   - **Organization Identifier**: Your reverse domain (e.g., `com.yourname`)
+   - **Bundle Identifier**: Will auto-generate
+   - **Interface**: **SwiftUI**
+   - **Language**: **Swift**
+   - **Storage**: Choose if you want to use Core Data or CloudKit (select **None** for this app)
+   - **Include Tests**: Optional
 
-3. Replace the default files with the files from this project:
-   - Copy all Swift files into your Xcode project
-   - Maintain the folder structure (Models/, Views/)
+5. **Save Location**: Choose a different location than your current `Liar_Game_App` folder, OR:
+   - If Xcode says the folder already exists and asks to move it to trash:
+     - **Option A**: Click "Cancel", temporarily rename your current `Liar_Game_App` folder to something else (like `Liar_Game_App_Files`), then create the project
+     - **Option B**: Accept moving to trash (you'll restore files next), then copy files from trash back
+     - **Option C**: Choose a different save location for the Xcode project
 
-4. Build and run the app on a simulator or device
+6. Click **Create**
+
+### Step 2: Add Files to Xcode Project
+
+1. In Xcode, right-click on the project name in the Navigator (left sidebar)
+2. Select **Add Files to "LiarGameApp"...**
+3. Navigate to your `Liar_Game_App` folder
+4. Select the following folders/files:
+   - `Models/` folder (with all files inside)
+   - `Views/` folder (with all files inside)
+   - `LiarGameApp.swift`
+   - `ContentView.swift`
+5. **IMPORTANT**: Make sure these options are checked:
+   - ✅ **Copy items if needed** (so files are copied into the Xcode project)
+   - ✅ **Create groups** (not folder references)
+   - ✅ Select your app target
+
+6. Click **Add**
+
+### Step 3: Replace Default App File
+
+1. In Xcode, find the default `ContentView.swift` or `App.swift` that Xcode created
+2. Delete it (Move to Trash)
+3. Make sure your `LiarGameApp.swift` is set as the main file:
+   - Check that `@main` attribute is on `LiarGameApp`
+   - The file should be in the root of your project
+
+### Step 4: Build and Run
+
+1. Select a simulator or your device from the device menu (top bar)
+2. Press **⌘R** or click the **Play** button
+3. The app should build and run!
+
+### Troubleshooting
+
+- **If files are missing**: Check that all files are added to the target (select file → File Inspector → Target Membership)
+- **If build errors**: Make sure iOS deployment target is 16.0+ (Project Settings → General → Deployment Info)
+- **If "Cannot find type in scope"**: Check that all files are properly added to the project target
 
 ## Requirements
 

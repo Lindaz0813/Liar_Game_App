@@ -1,13 +1,13 @@
 //
-//  Liars_GameUITestsLaunchTests.swift
-//  Liars GameUITests
+//  LiarsUITestsLaunchTests.swift
+//  LiarsUITests
 //
 //  Created by Linda Zhou on 1/11/26.
 //
 
 import XCTest
 
-final class Liars_GameUITestsLaunchTests: XCTestCase {
+final class LiarsUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
