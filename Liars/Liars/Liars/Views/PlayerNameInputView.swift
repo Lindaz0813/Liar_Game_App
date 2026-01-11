@@ -12,9 +12,15 @@ struct PlayerNameInputView: View {
                 .fontWeight(.bold)
                 .padding(.top, 40)
             
-            Text("Player \(gameManager.players.count + 1) of \(gameManager.gameSettings.numberOfPlayers)")
+            Text("Add Players")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
+            
+            if gameManager.players.count > 0 {
+                Text("\(gameManager.players.count) player\(gameManager.players.count == 1 ? "" : "s") added")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
             
             VStack(spacing: 20) {
                 TextField("Enter player name", text: $playerName)
@@ -77,9 +83,10 @@ struct PlayerNameInputView: View {
                 .disabled(playerName.isEmpty)
                 .padding(.horizontal)
                 
-                if gameManager.players.count == gameManager.gameSettings.numberOfPlayers {
+                let minPlayers = gameManager.gameSettings.numberOfImposters + 1
+                if gameManager.players.count >= minPlayers {
                     Button(action: {
-                        gameManager.currentStep = .namesDisplay
+                        gameManager.startGame()
                     }) {
                         Text("Start Game")
                             .font(.headline)
@@ -90,6 +97,12 @@ struct PlayerNameInputView: View {
                             .cornerRadius(12)
                     }
                     .padding(.horizontal)
+                } else if gameManager.players.count > 0 {
+                    Text("Add at least \(minPlayers - gameManager.players.count) more player\(minPlayers - gameManager.players.count == 1 ? "" : "s") (need at least \(minPlayers) total)")
+                        .font(.caption)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
                 }
                 
                 Button(action: {
@@ -114,8 +127,7 @@ struct PlayerNameInputView: View {
     }
     
     private func addPlayer() {
-        guard !playerName.trimmingCharacters(in: .whitespaces).isEmpty,
-              gameManager.players.count < gameManager.gameSettings.numberOfPlayers else {
+        guard !playerName.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
         

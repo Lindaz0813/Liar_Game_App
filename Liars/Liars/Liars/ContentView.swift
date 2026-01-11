@@ -13,10 +13,11 @@ struct ContentView: View {
                     CategorySelectionView()
                 case .playerNames:
                     PlayerNameInputView()
-                case .namesDisplay:
-                    NamesDisplayView()
                 case .gameplay:
                     GamePlayView()
+                case .namesDisplay:
+                    // This step is no longer used - kept for compatibility
+                    EmptyView()
                 }
             }
             .transition(.opacity)

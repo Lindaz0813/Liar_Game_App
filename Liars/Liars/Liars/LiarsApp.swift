@@ -1,13 +1,17 @@
+//
+//  LiarsApp.swift
+//  Liars
+//
+//  Created by Linda Zhou on 1/11/26.
+//
+
 import SwiftUI
 
 @main
 struct LiarsApp: App {
-    @StateObject private var gameManager = GameManager()
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(gameManager)
         }
     }
 }

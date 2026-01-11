@@ -11,26 +11,6 @@ struct GameSetupView: View {
                 .padding(.top, 40)
             
             VStack(alignment: .leading, spacing: 25) {
-                // Number of Players
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Number of Players")
-                        .font(.headline)
-                    Text("\(gameManager.gameSettings.numberOfPlayers)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Slider(
-                        value: Binding(
-                            get: { Double(gameManager.gameSettings.numberOfPlayers) },
-                            set: { gameManager.gameSettings.numberOfPlayers = Int($0) }
-                        ),
-                        in: 3...20,
-                        step: 1
-                    )
-                }
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(12)
-                
                 // Number of Imposters
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Number of Imposters")
@@ -43,7 +23,7 @@ struct GameSetupView: View {
                             get: { Double(gameManager.gameSettings.numberOfImposters) },
                             set: { gameManager.gameSettings.numberOfImposters = Int($0) }
                         ),
-                        in: 1...min(4, gameManager.gameSettings.numberOfPlayers - 1),
+                        in: 1.0...4.0,
                         step: 1
                     )
                 }

@@ -7,8 +7,7 @@ A fun party game where players try to identify the liar among them. Built with S
 
 ### 1st step: Game setup
 
-- Buttons and sliders for 
-    - # of players, 3-20, default 6
+- Buttons and sliders
     - # of imposters, 1-4, default 2
     - checkbox for if imposter will have blank or an imposter word that is similar to true word
 
