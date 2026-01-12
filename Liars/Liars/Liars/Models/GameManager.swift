@@ -82,4 +82,19 @@ class GameManager: ObservableObject {
         gameWord = ""
         imposterWord = ""
     }
+    
+    func newGameWithSamePlayers() {
+        // Reset game state but keep players and settings
+        // Reset player game states
+        for i in 0..<players.count {
+            players[i].word = ""
+            players[i].isImposter = false
+            players[i].hasViewedWord = false
+        }
+        currentPlayerIndex = 0
+        gameWord = ""
+        imposterWord = ""
+        // Go back to category selection
+        currentStep = .category
+    }
 }

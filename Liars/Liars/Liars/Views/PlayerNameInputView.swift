@@ -4,6 +4,7 @@ struct PlayerNameInputView: View {
     @EnvironmentObject var gameManager: GameManager
     @State private var playerName: String = ""
     @FocusState private var isTextFieldFocused: Bool
+    @State private var selectedPlayerId: UUID?
     
     var body: some View {
         VStack(spacing: 30) {
@@ -11,16 +12,6 @@ struct PlayerNameInputView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 40)
-            
-            Text("Add Players")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            
-            if gameManager.players.count > 0 {
-                Text("\(gameManager.players.count) player\(gameManager.players.count == 1 ? "" : "s") added")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
             
             VStack(spacing: 20) {
                 TextField("Enter player name", text: $playerName)
@@ -35,36 +26,61 @@ struct PlayerNameInputView: View {
                 
                 if gameManager.players.count > 0 {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Players Added:")
-                            .font(.headline)
-                            .padding(.horizontal)
+                        HStack {
+                            Text("Players Added:")
+                                .font(.headline)
+                            Spacer()
+                            Text("\(gameManager.players.count) player\(gameManager.players.count == 1 ? "" : "s")")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.horizontal)
                         
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 8) {
+                        ScrollView(.vertical, showsIndicators: true) {
+                            LazyVStack(alignment: .leading, spacing: 8) {
                                 ForEach(gameManager.players) { player in
-                                    HStack {
+                                    HStack(spacing: 12) {
+                                        Button(action: {
+                                            selectedPlayerId = player.id
+                                        }) {
+                                            Text(player.profileIcon)
+                                                .font(.system(size: 32))
+                                        }
+                                        
                                         Text(player.name)
                                             .font(.body)
+                                        
                                         Spacer()
+                                        
                                         Button(action: {
                                             removePlayer(player)
                                         }) {
                                             Image(systemName: "xmark.circle.fill")
                                                 .foregroundColor(.red)
+                                                .font(.title3)
                                         }
+                                        .buttonStyle(.plain)
                                     }
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 10)
                                     .background(Color(.systemGray6))
                                     .cornerRadius(8)
                                 }
                             }
                             .padding(.horizontal)
+                            .padding(.vertical, 8)
                         }
-                        .frame(maxHeight: 200)
+                        .frame(maxHeight: 450)
+                        .background(Color(.systemBackground))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color(.systemGray4), lineWidth: 1)
+                        )
                     }
                 }
             }
+            .padding(.vertical, 10)
             
             Spacer()
             
@@ -121,7 +137,41 @@ struct PlayerNameInputView: View {
             }
         }
         .background(Color(.systemBackground))
+        .sheet(isPresented: Binding(
+            get: { selectedPlayerId != nil },
+            set: { if !$0 { selectedPlayerId = nil } }
+        )) {
+            if let playerId = selectedPlayerId,
+               let player = gameManager.players.first(where: { $0.id == playerId }) {
+                ProfilePictureSelectorView(selectedIcon: Binding(
+                    get: {
+                        gameManager.players.first(where: { $0.id == playerId })?.profileIcon ?? player.profileIcon
+                    },
+                    set: { newIcon in
+                        if let index = gameManager.players.firstIndex(where: { $0.id == playerId }) {
+                            gameManager.players[index].profileIcon = newIcon
+                            selectedPlayerId = nil // Close sheet after selection
+                        }
+                    }
+                ))
+            }
+        }
         .onAppear {
+            // Add default players if list is empty
+            if gameManager.players.isEmpty {
+                let defaultPlayers: [(name: String, emoji: String)] = [
+                    ("Linda", "🐈‍⬛"),    // Black cat
+                    ("Teena", "🐨"),      // Koala
+                    ("DShinny", "🐧"),     // Penguin
+                    ("Chanha", "🃏"),     // Joker card
+                    ("Patty", "🌠")        // Shooting Star
+                ]
+                for player in defaultPlayers {
+                    var newPlayer = Player(name: player.name)
+                    newPlayer.profileIcon = player.emoji
+                    gameManager.players.append(newPlayer)
+                }
+            }
             isTextFieldFocused = true
         }
     }

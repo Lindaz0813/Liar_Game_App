@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		28EE4F252F14656B00F50045 /* Liars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liars.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		28EE4F352F14656E00F50045 /* LiarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiarsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		28EE4F3F2F14656E00F50045 /* LiarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiarsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		28EE4F252F14656B00F50045 /* Liars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Liars.app; path = "/Users/lindazhou/Desktop/Liar_Game_App/Liars/Liars/build/Debug-iphoneos/Liars.app"; sourceTree = "<absolute>"; };
+		28EE4F352F14656E00F50045 /* LiarsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LiarsTests.xctest; path = "/Users/lindazhou/Desktop/Liar_Game_App/Liars/Liars/build/Debug-iphoneos/Liars.app/PlugIns/LiarsTests.xctest"; sourceTree = "<absolute>"; };
+		28EE4F3F2F14656E00F50045 /* LiarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LiarsUITests.xctest; path = "/Users/lindazhou/Desktop/Liar_Game_App/Liars/Liars/build/Debug-iphoneos/LiarsUITests-Runner.app/PlugIns/LiarsUITests.xctest"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -78,18 +78,7 @@
 				28EE4F272F14656B00F50045 /* Liars */,
 				28EE4F382F14656E00F50045 /* LiarsTests */,
 				28EE4F422F14656E00F50045 /* LiarsUITests */,
-				28EE4F262F14656B00F50045 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		28EE4F262F14656B00F50045 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				28EE4F252F14656B00F50045 /* Liars.app */,
-				28EE4F352F14656E00F50045 /* LiarsTests.xctest */,
-				28EE4F3F2F14656E00F50045 /* LiarsUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +185,7 @@
 			mainGroup = 28EE4F1C2F14656B00F50045;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 28EE4F262F14656B00F50045 /* Products */;
+			productRefGroup = 28EE4F1C2F14656B00F50045;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
